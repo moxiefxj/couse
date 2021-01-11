@@ -37,5 +37,10 @@ public class UserController {
         System.out.println(userList);
         return userList;
     }
+
+    @GetMapping("/helloworld")
+    public String helloworld() {
+        return "hello world";
+    }
 }
 
