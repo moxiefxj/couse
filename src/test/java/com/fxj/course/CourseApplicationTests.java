@@ -14,22 +14,22 @@ class CourseApplicationTests {
     @Test
     void contextLoads() {
 //        新增数据
-        User user = new User();
-        user.setName("冯筱静01");
-        user.setAge(10);
-        user.setBrief("爱学习的我01");
-        user.setPassword("111111");
-        user.setTel("18780227212");
-        user.setRole("user");
-        System.out.println(user);
-        int i = userMapper.insert(user);
-        System.out.println(i);
+//        User user = new User();
+//        user.setName("冯筱静01");
+//        user.setAge(10);
+//        user.setBrief("爱学习的我01");
+//        user.setPassword("111111");
+//        user.setTel("18780227212");
+//        user.setRole("user");
+//        System.out.println(user);
+//        int i = userMapper.insert(user);
+//        System.out.println(i);
     }
     @Test
     void testUpadte() {
-        User user = userMapper.selectById(2L);
-        user.setAge(11);
-        userMapper.updateById(user);
+//        User user = userMapper.selectById(2L);
+//        user.setAge(11);
+//        userMapper.updateById(user);
     }
 
 }
