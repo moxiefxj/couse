@@ -1,0 +1,13 @@
+com\fxj\course\config\GlobalReturnConfig$ResultResponseAdvice.class
+com\fxj\course\service\impl\UserServiceImpl.class
+com\fxj\course\config\MybatisConfig.class
+com\fxj\course\entity\Result.class
+com\fxj\course\service\UserService.class
+com\fxj\course\entity\User.class
+com\fxj\course\CourseApplication.class
+com\fxj\course\mapper\UserMapper.class
+com\fxj\course\handler\MyMetaObjectHandler.class
+com\fxj\course\config\GlobalReturnConfig.class
+com\fxj\course\controller\UserController.class
+com\fxj\course\config\HttpErrorController.class
+com\fxj\course\config\SwaggerConfig.class
