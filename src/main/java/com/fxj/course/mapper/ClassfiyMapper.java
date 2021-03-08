@@ -1,10 +1,9 @@
 package com.fxj.course.mapper;
 
-import com.fxj.course.entity.User;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.fxj.course.entity.Classfiy;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 
 /**
  * <p>
@@ -12,8 +11,8 @@ import java.util.List;
  * </p>
  *
  * @author fengxiaojing
- * @since 2021-01-04
+ * @since 2021-02-25
  */
 @Repository
-public interface UserMapper extends BaseMapper<User> {
+public interface ClassfiyMapper extends BaseMapper<Classfiy> {
 }

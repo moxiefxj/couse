@@ -1,6 +1,7 @@
 package com.fxj.course.controller;
 
 
+import com.fxj.course.entity.Result;
 import com.fxj.course.entity.User;
 import com.fxj.course.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,14 +29,14 @@ public class UserController {
     @Autowired
     private UserMapper userMapper;
     @GetMapping("/hello")
-    public List<User> hello(String tel) {
+    public Result hello(String tel) {
         HashMap<String, Object> map = new HashMap<>();
 //        自定义查询
         map.put("tel",tel);
 
         List<User> userList = userMapper.selectByMap(map);
         System.out.println(userList);
-        return userList;
+        return Result.success(userList,200);
     }
 
     @GetMapping("/helloworld")

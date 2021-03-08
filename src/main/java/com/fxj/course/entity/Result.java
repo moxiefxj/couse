@@ -13,10 +13,7 @@ import java.io.Serializable;
 public class Result<T> implements Serializable {
 
     @ApiModelProperty(value = "接口调用成功或者失败")
-    private Integer code = 0;
-
-    @ApiModelProperty(value = "失败的具体code")
-    private String errorCode = "";
+    private Integer code ;
 
     @ApiModelProperty(value = "需要传递的信息，例如错误信息")
     private String msg;
@@ -24,14 +21,26 @@ public class Result<T> implements Serializable {
     @ApiModelProperty(value = "需要传递的数据")
     private T data;
 
-    public Result(Integer code, String errorCode, String msg, T data) {
-        this.code = code;
-        this.errorCode = errorCode;
-        this.msg = msg;
-        this.data = data;
+//    成功时调用
+    public static <T> Result<T> success(T data,Integer code) {
+        return new Result<T>(data,code);
     }
-
-    public Result(Object body) {
-        this.data = (T) body;
+//    失败时调用
+    public static <T> Result<T> error(CodeMsg codeMsg) {
+        return new Result<T>(codeMsg);
+    }
+    private Result(T data,Integer code) {
+        this.data = data;
+        this.code = code;
+    }
+    private Result(Integer code, String msg){
+        this.code = code;
+        this.msg = msg;
+    }
+    public Result(CodeMsg codeMsg) {
+        if(codeMsg != null){
+            this.code = codeMsg.getCode();
+            this.msg = codeMsg.getMsg();
+        }
     }
 }
