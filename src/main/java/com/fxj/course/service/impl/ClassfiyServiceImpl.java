@@ -16,7 +16,6 @@ public class ClassfiyServiceImpl extends ServiceImpl<ClassfiyMapper, Classfiy> i
     @Override
     public List<Classfiy> selectAll() {
         List<Classfiy> classfiys = classfiyMapper.selectList(null);
-        System.out.println(classfiys);
         return classfiys;
     }
 }

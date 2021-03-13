@@ -20,14 +20,8 @@ public class ClassfiyCourseVo {
     @ApiModelProperty(value = "分类id")
     private Integer classfiyId;
 
-    @ApiModelProperty(value = "分类")
-    private String classfiy;
-
-    @ApiModelProperty(value = "分类第一层")
-    private String classfiyLevel1;
-
-    @ApiModelProperty(value = "分类第二层")
-    private String classfiyLevel2;
+    @ApiModelProperty(value = "分类名")
+    private String name;
 
     @ApiModelProperty(value = "课程名")
     private String courseName;

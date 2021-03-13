@@ -31,14 +31,14 @@ public class Classfiy implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    @ApiModelProperty(value = "分类")
-    private String classfiy;
+    @ApiModelProperty(value = "分类名")
+    private String name;
 
-    @ApiModelProperty(value = "分类第一层")
-    private String classfiyLevel1;
+    @ApiModelProperty(value = "父类id")
+    private String parentId;
 
-    @ApiModelProperty(value = "分类第二层")
-    private String classfiyLevel2;
+    @ApiModelProperty(value = "所属第几层")
+    private String depth;
 
     @ApiModelProperty(value = "创建时间")
     @TableField(fill = FieldFill.INSERT)
