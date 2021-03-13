@@ -15,7 +15,7 @@ public class CodeMsg {
 
     }
 
-    private CodeMsg (int code, String msg) {
+    public CodeMsg(int code, String msg) {
         this.code = code;
         this.msg = msg;
     }

@@ -1,35 +1,24 @@
 package com.fxj.course.entity;
 
-import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
-
-
-/**
- * <p>
- *
- * </p>
- *
- * @author fengxiaojing
- * @since 2021-02-25
- */
 @Data
 @EqualsAndHashCode(callSuper = false)
-@ApiModel(value="Classfiy对象", description="")
-public class Classfiy implements Serializable {
+@ApiModel(value="Classfiy与course对象", description="")
+public class ClassfiyCourseVo {
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "主键id")
+    @ApiModelProperty(value = "课程主键id")
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
+
+    @ApiModelProperty(value = "分类id")
+    private Integer classfiyId;
 
     @ApiModelProperty(value = "分类")
     private String classfiy;
@@ -40,11 +29,12 @@ public class Classfiy implements Serializable {
     @ApiModelProperty(value = "分类第二层")
     private String classfiyLevel2;
 
-    @ApiModelProperty(value = "创建时间")
-    @TableField(fill = FieldFill.INSERT)
-    private LocalDateTime createTime;
+    @ApiModelProperty(value = "课程名")
+    private String courseName;
 
-    @ApiModelProperty(value = "更新时间")
-    @TableField(update = "now()")
-    private LocalDateTime updateTime;
+    @ApiModelProperty(value = "课程图片")
+    private String courseImg;
+
+    @ApiModelProperty(value = "讲师")
+    private String teacher;
 }
