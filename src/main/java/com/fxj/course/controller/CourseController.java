@@ -29,6 +29,7 @@ public class CourseController {
 
     @Autowired
     public CourseService courseService;
+    public CodeMsg codeMsg;
 
     @PostMapping("detail")
     public Result selectDetail(@RequestBody HashMap<String,String> map){
@@ -68,11 +69,49 @@ public class CourseController {
         return Result.success(level1CourseVos,200);
     }
 
+    /**
+     * 根据第二层分类
+     * @param map
+     * @return
+     */
+
     @PostMapping("selectLevel2CourseList")
     public Result selectLevel2CourseList(@RequestBody HashMap<String,String> map){
         String level2 = map.get("level2");
         List<ClassfiyCourseVo> level2CourseVos = courseService.selectLevel2CourseList(level2);
         return Result.success(level2CourseVos,200);
+    }
+
+    /**
+     * 根据关键字查找
+     * @param map
+     * @return
+     */
+    @PostMapping("searchKey")
+    public Result selectKeyCourse(@RequestBody HashMap<String,String> map){
+        List<Course> courses = courseService.selectKeyCourse(map.get("keyValue"));
+        System.out.println(map.get("keyValue"));
+        return Result.success("成功",200);
+    }
+
+    /**
+     * 新增课程
+     * @param map
+     * @return
+     */
+    @PostMapping("updateCourse")
+    public Result updateCourse(@RequestBody HashMap<String,String> map){
+        Integer i = courseService.updateCourse(map);
+        if(i == 1){
+            return Result.success("成功",200);
+        }else {
+            return Result.error(new CodeMsg(500,"更新失败"));
+        }
+    }
+    @GetMapping("getCourseList")
+    public Result getCourseList(){
+        List<Course> courseList = courseService.getCourseList();
+        return Result.success(courseList,200);
     }
 
 }
