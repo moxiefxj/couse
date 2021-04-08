@@ -2,6 +2,7 @@ package com.fxj.course.mapper;
 
 import com.fxj.course.entity.Menu;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.stereotype.Repository;
 
 /**
  * <p>
@@ -11,6 +12,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author fengxiaojing
  * @since 2021-03-09
  */
+@Repository
 public interface MenuMapper extends BaseMapper<Menu> {
 
 }
