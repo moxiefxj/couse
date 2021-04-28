@@ -66,4 +66,12 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements Me
         Integer i = menuMapper.updateById(menu);
         return i;
     }
+
+    @Override
+    public List<Menu> getSectionList(HashMap<String, String> map) {
+        HashMap map1 = new HashMap();
+        map1.put("chapter",map.get("chapter"));
+        List<Menu> list = menuMapper.selectByMap(map1);
+        return list;
+    }
 }

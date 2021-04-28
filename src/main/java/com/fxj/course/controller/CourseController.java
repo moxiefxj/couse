@@ -1,17 +1,19 @@
 package com.fxj.course.controller;
 
 
-import com.fxj.course.entity.ClassfiyCourseVo;
-import com.fxj.course.entity.CodeMsg;
-import com.fxj.course.entity.Course;
-import com.fxj.course.entity.Result;
+import com.fxj.course.entity.*;
+import com.fxj.course.service.ClassfiyService;
+import com.fxj.course.service.CollectService;
 import com.fxj.course.service.CourseService;
+import com.fxj.course.service.UserService;
+import com.fxj.course.utils.TokenUtil;
 import com.sun.org.apache.bcel.internal.generic.ACONST_NULL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,7 +31,23 @@ public class CourseController {
 
     @Autowired
     public CourseService courseService;
+    @Autowired
+    public ClassfiyService classfiyService;
+    @Autowired
+    public UserService userService;
+    @Autowired
+    public CollectService collectService;
     public CodeMsg codeMsg;
+
+    public Integer getUserId(){
+        String openId = TokenUtil.getTokenOpenId();
+        if(openId != "") {
+            Integer userId = userService.selectUserId(openId);
+            return  userId;
+        }else {
+            return -1;
+        }
+    }
 
     @PostMapping("detail")
     public Result selectDetail(@RequestBody HashMap<String,String> map){
@@ -91,7 +109,7 @@ public class CourseController {
     public Result selectKeyCourse(@RequestBody HashMap<String,String> map){
         List<Course> courses = courseService.selectKeyCourse(map.get("keyValue"));
         System.out.println(map.get("keyValue"));
-        return Result.success("成功",200);
+        return Result.success(courses,200);
     }
 
     /**
@@ -108,11 +126,45 @@ public class CourseController {
             return Result.error(new CodeMsg(500,"更新失败"));
         }
     }
+
+    /**
+     * 管理台获取所有课程列表
+     * @return
+     */
     @GetMapping("getCourseList")
     public Result getCourseList(){
         List<Course> courseList = courseService.getCourseList();
         return Result.success(courseList,200);
     }
 
+    @PostMapping("getCourseListById")
+    public Result getCourseListById(@RequestBody HashMap<String,String> maps){
+        List ids = classfiyService.getClassfiyIds(maps.get("id"));
+        ids.add(maps.get("id"));
+        List list = courseService.selectCourseByClassfiyId(ids);
+        return Result.success(list,200);
+    }
+
+    @GetMapping("getCourseCollectList")
+    public Result getCourseCollectList(){
+        Integer userId = getUserId();
+        if(userId != -1){
+            List list1 = collectService.getCourseId(userId);
+            List<Course> list = courseService.getCourseCollectList(list1);
+            return Result.success(list,200);
+        }else {
+            return Result.error(new CodeMsg(401,"请重新登录"));
+        }
+    }
+
+    @PostMapping("delCourse")
+    public Result delMenu(@RequestBody HashMap<String,String> map){
+        Integer id = courseService.delCourse(map.get("id"));
+        if(id != 0){
+            return Result.success("删除成功",200);
+        }else{
+            return  Result.error(new CodeMsg(500,"删除失败"));
+        }
+    }
 }
 

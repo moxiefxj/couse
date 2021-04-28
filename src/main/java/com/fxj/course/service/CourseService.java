@@ -38,4 +38,11 @@ public interface CourseService extends IService<Course> {
     public Integer updateCourse(HashMap<String,String> map);
 //    查询课程列表
     public List<Course> getCourseList();
+//    根据classfiy_id查找课程
+    public List selectCourseByClassfiyId(List id);
+
+    public List<Course> getCourseCollectList(List list);
+
+//
+    public Integer delCourse(String id);
 }

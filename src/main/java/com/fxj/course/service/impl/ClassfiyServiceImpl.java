@@ -69,5 +69,17 @@ public class ClassfiyServiceImpl extends ServiceImpl<ClassfiyMapper, Classfiy> i
         return i;
     }
 
+    @Override
+    public List getClassfiyIds(String id) {
+        HashMap map = new HashMap();
+        map.put("parent_id",id);
+        List list = new ArrayList();
+        List<Classfiy> classfiys = classfiyMapper.selectByMap(map);
+        for (int i = 0; i < classfiys.size(); i++) {
+            list.add(classfiys.get(i).getId());
+        }
+        return list;
+    }
+
 
 }

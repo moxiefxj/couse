@@ -55,7 +55,7 @@ public class AutoCode {
 
 //        4.策略配置
         StrategyConfig strategy = new StrategyConfig();
-        strategy.setInclude("comment");//设置映射的表名
+        strategy.setInclude("collect");//设置映射的表名
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setEntityLombokModel(true); //自动lombok

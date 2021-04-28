@@ -26,4 +26,6 @@ public interface MenuService extends IService<Menu> {
     public Integer delMenu(String id);
 //    修改目录
     public Integer modifyMenu(HashMap<String,String> map);
+//    根据章查找节
+    public List<Menu> getSectionList(HashMap<String,String> map);
 }

@@ -23,4 +23,8 @@ public interface ClassfiyService extends IService<Classfiy> {
     public List<Classfiy> getClassfiySecond(HashMap<String, Integer> map);
 //    修改分类名称
     public Integer modifyClassfiy(HashMap<String,String> map);
+
+//    根据第二层分类id查询出此id之下所有分类id
+    public List getClassfiyIds(String id);
+
 }

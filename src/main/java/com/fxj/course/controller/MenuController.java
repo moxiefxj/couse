@@ -71,5 +71,10 @@ public class MenuController {
         }
     }
 
+    @PostMapping("getSectionList")
+    public Result getSectionList(@RequestBody HashMap<String,String> maps){
+        List<Menu> sectionList = menuService.getSectionList(maps);
+        return Result.success(sectionList,200);
+    }
 }
 

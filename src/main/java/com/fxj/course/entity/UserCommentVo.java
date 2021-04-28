@@ -2,35 +2,33 @@ package com.fxj.course.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.IdType;
-
-import java.time.LocalDateTime;
-import java.util.Date;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
-import java.io.Serializable;
+import com.baomidou.mybatisplus.annotation.TableId;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-/**
- * <p>
- * 
- * </p>
- *
- * @author fengxiaojing
- * @since 2021-03-09
- */
+import java.time.LocalDateTime;
+
 @Data
 @EqualsAndHashCode(callSuper = false)
-@ApiModel(value="Comment对象", description="")
-public class Comment implements Serializable {
-
+@ApiModel(value="user与comment对象", description="")
+public class UserCommentVo {
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "主键")
+    @ApiModelProperty(value = "主键id")
     @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    private Long id;
+
+    @ApiModelProperty( value = "头像")
+    private String avatarUrl;
+
+    @ApiModelProperty(value = "姓名")
+    private String name;
+
+    @ApiModelProperty(value = "性别")
+    private String gender;
 
     @ApiModelProperty(value = "评价内容")
     private String content;
@@ -38,18 +36,6 @@ public class Comment implements Serializable {
     @ApiModelProperty(value = "评分")
     private Integer score;
 
-    @ApiModelProperty(value = "用户id")
-    private Integer userId;
-
     @ApiModelProperty(value = "创建时间")
-    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
-
-    @ApiModelProperty(value = "课程id")
-    private Integer courseId;
-
-    @ApiModelProperty(value = "点赞")
-    private Integer zan;
-
-
 }

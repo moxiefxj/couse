@@ -34,20 +34,26 @@ public class User implements Serializable {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
+    @ApiModelProperty( value = "头像")
+    private String avatarUrl;
+
+    @ApiModelProperty( value = "open_id")
+    private String openId;
+
     @ApiModelProperty(value = "姓名")
     private String name;
 
-    @ApiModelProperty(value = "年龄")
-    private Integer age;
+    @ApiModelProperty(value = "性别")
+    private String gender;
 
-    @ApiModelProperty(value = "手机号")
-    private String tel;
+    @ApiModelProperty(value = "城市")
+    private String city;
 
-    @ApiModelProperty(value = "密码")
-    private String password;
+    @ApiModelProperty(value = "省")
+    private String province;
 
-    @ApiModelProperty(value = "简介")
-    private String brief;
+    @ApiModelProperty(value = "国家")
+    private String country;
 
     @ApiModelProperty(value = "角色")
     private String role;

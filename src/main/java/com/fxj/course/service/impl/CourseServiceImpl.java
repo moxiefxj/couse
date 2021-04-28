@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.fxj.course.entity.ClassfiyCourseVo;
 import com.fxj.course.entity.Course;
 import com.fxj.course.mapper.CourseMapper;
+import com.fxj.course.service.CollectService;
 import com.fxj.course.service.CourseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.sun.org.apache.bcel.internal.generic.ACONST_NULL;
@@ -59,7 +60,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         queryWrapper.select("id,classfiy_id,course_img,course_name,teacher")
                 .like("course_name",keyValue);
         List<Course> courses = courseMapper.selectList(queryWrapper);
-        return null;
+        return courses;
     }
 
     @Override
@@ -80,4 +81,36 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         List<Course> courses = courseMapper.selectList(null);
         return courses;
     }
+
+    @Override
+    public List selectCourseByClassfiyId(List id) {
+        HashMap map = new HashMap();
+        for (int i = 0; i < id.size(); i++) {
+            map.put("classfiy_id",id.get(i));
+        }
+        List list = courseMapper.selectByMap(map);
+        return list;
+    }
+
+    @Override
+    public List<Course> getCourseCollectList(List list) {
+        List list1 = null;
+        if(list.size() == 0){
+            return list1;
+        }
+        HashMap map = new HashMap();
+        for (int i = 0; i < list.size(); i++) {
+            map.put("id",list.get(i));
+            list1.add(courseMapper.selectByMap(map));
+        }
+        System.out.println(list1);
+        return list1;
+    }
+
+    @Override
+    public Integer delCourse(String id) {
+        Integer i = courseMapper.deleteById(id);
+        return i;
+    }
+
 }
