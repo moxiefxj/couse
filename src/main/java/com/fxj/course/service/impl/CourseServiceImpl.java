@@ -7,8 +7,6 @@ import com.fxj.course.mapper.CourseMapper;
 import com.fxj.course.service.CollectService;
 import com.fxj.course.service.CourseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.sun.org.apache.bcel.internal.generic.ACONST_NULL;
-import com.sun.org.apache.bcel.internal.generic.DCONST;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
