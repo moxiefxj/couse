@@ -63,7 +63,7 @@ public class WxController {
 
         String token =  JWT.create().withAudience(String.valueOf(jsonObject.get("openid"))).withIssuedAt(start).withExpiresAt(end)
                 .sign(Algorithm.HMAC256(String.valueOf(jsonObject.get("openid"))));
-        redisTemplate.boundValueOps(token).set(jsonObject);
+//        redisTemplate.boundValueOps(token).set(jsonObject);
         return  Result.success(token,200);
     }
 }
