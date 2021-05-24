@@ -36,7 +36,7 @@ public class AdjustController {
             return -1;
         }
     }
-    @PostMapping("/update")
+    @PostMapping("update")
     public Result update(@RequestBody HashMap<String,String> maps){
         Integer userId = getUserId();
         if(userId != -1){
@@ -50,7 +50,7 @@ public class AdjustController {
             return Result.error(new CodeMsg(401,"请重新登录"));
         }
     }
-    @GetMapping("/getAdjustList")
+    @GetMapping("getAdjustList")
     public Result getAdjust(){
         List list = adjustService.getAdjust();
         return Result.success(list,200);
