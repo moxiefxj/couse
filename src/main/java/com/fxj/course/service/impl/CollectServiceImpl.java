@@ -60,6 +60,7 @@ public class CollectServiceImpl extends ServiceImpl<CollectMapper, Collect> impl
         map.put("user_id",userId);
         List list = new ArrayList();
         List<Collect> list1 = collectMapper.selectByMap(map);
+        System.out.println(list1);
         for (int i = 0; i < list1.size(); i++) {
             list.add(list1.get(i).getCourseId());
         }

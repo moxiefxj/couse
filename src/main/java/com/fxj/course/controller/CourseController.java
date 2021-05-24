@@ -126,6 +126,15 @@ public class CourseController {
             return Result.error(new CodeMsg(500,"更新失败"));
         }
     }
+    @PostMapping("modifyCourse")
+    public Result modifyCourse(@RequestBody HashMap<String,String> map){
+        Integer i = courseService.modifyCourse(map);
+        if(i == 1){
+            return Result.success("成功",200);
+        }else {
+            return Result.error(new CodeMsg(500,"更新失败"));
+        }
+    }
 
     /**
      * 管理台获取所有课程列表

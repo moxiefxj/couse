@@ -24,7 +24,7 @@ public interface CourseService extends IService<Course> {
 
 //   根据level1查询相关课程
    public List<ClassfiyCourseVo> selectLevel1CourseList(String level1);
-    //   根据level2查询相关课程
+    //   根据level2查询相modifyCourse关课程
     public List<ClassfiyCourseVo> selectLevel2CourseList(String level2);
 
     /**
@@ -45,4 +45,5 @@ public interface CourseService extends IService<Course> {
 
 //
     public Integer delCourse(String id);
+    public Integer modifyCourse(HashMap<String,String> map);
 }

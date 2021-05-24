@@ -4,12 +4,13 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.fxj.course.entity.ClassfiyCourseVo;
 import com.fxj.course.entity.Course;
 import com.fxj.course.mapper.CourseMapper;
-import com.fxj.course.service.CollectService;
 import com.fxj.course.service.CourseService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -55,7 +56,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
     @Override
     public List<Course> selectKeyCourse(String keyValue) {
         QueryWrapper<Course> queryWrapper = new QueryWrapper<>();
-        queryWrapper.select("id,classfiy_id,course_img,course_name,teacher")
+        queryWrapper.select("id,classfiy_id,course_img,course_name,teacher,lecturer_resume,promotion_url,brief")
                 .like("course_name",keyValue);
         List<Course> courses = courseMapper.selectList(queryWrapper);
         return courses;
@@ -66,6 +67,7 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
         Course course = new Course();
         course.setCourseName(map.get("course_name"));
         course.setCourseImg(map.get("course_img"));
+        course.setBrief(map.get("brief"));
         course.setTeacher(map.get("teacher"));
         course.setPromotionUrl(map.get("url"));
         course.setLecturerResume(map.get("lecturerResume"));
@@ -92,22 +94,36 @@ public class CourseServiceImpl extends ServiceImpl<CourseMapper, Course> impleme
 
     @Override
     public List<Course> getCourseCollectList(List list) {
-        List list1 = null;
+        ArrayList list1 = new ArrayList();
         if(list.size() == 0){
             return list1;
         }
         HashMap map = new HashMap();
-        for (int i = 0; i < list.size(); i++) {
-            map.put("id",list.get(i));
-            list1.add(courseMapper.selectByMap(map));
-        }
-        System.out.println(list1);
-        return list1;
+        System.out.println(list);
+        List list2 = courseMapper.selectBatchIds(list);
+        System.out.println("list2"+list2.size());
+//        for (int i = 0; i < list.size(); i++) {
+//            map.put("id",list.get(i));
+//            list1.add(courseMapper.selectByMap(map));
+//        }
+        return list2;
     }
 
     @Override
     public Integer delCourse(String id) {
         Integer i = courseMapper.deleteById(id);
+        return i;
+    }
+
+    @Override
+    public Integer modifyCourse(HashMap<String,String> map) {
+        Course course = new Course();
+        course.setId(Integer.parseInt(map.get("id")));
+        course.setCourseName(map.get("course_name"));
+        course.setBrief(map.get("brief"));
+        course.setTeacher(map.get("teacher"));
+        course.setLecturerResume(map.get("lecturerResume"));
+        Integer i = courseMapper.updateById(course);
         return i;
     }
 

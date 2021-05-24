@@ -1,6 +1,5 @@
 package com.fxj.course.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.fxj.course.entity.Classfiy;
 import com.fxj.course.mapper.ClassfiyMapper;

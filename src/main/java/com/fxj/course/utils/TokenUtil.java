@@ -13,6 +13,7 @@ public class TokenUtil {
 
     public static String getTokenOpenId() {
         String token = getRequest().getHeader("token");// 从 http 请求头中取出 token
+        System.out.println(JWT.decode(token).getAudience());
         String openId = JWT.decode(token).getAudience().get(0);
         return openId;
     }

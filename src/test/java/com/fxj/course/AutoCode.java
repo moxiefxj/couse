@@ -55,19 +55,19 @@ public class AutoCode {
 
 //        4.策略配置
         StrategyConfig strategy = new StrategyConfig();
-        strategy.setInclude("collect");//设置映射的表名
+        strategy.setInclude("adjust");//设置映射的表名
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setEntityLombokModel(true); //自动lombok
 
         strategy.setLogicDeleteFieldName("deleted");
 //        自动填充配置
-//        TableFill createTime = new TableFill("create_time", FieldFill.INSERT);
+        TableFill createTime = new TableFill("create_time", FieldFill.INSERT);
 //        TableFill updateTime = new TableFill("update_time", FieldFill.INSERT_UPDATE);
-//        ArrayList<TableFill> tableFills = new ArrayList<>();
-//        tableFills.add(createTime);
+        ArrayList<TableFill> tableFills = new ArrayList<>();
+        tableFills.add(createTime);
 //        tableFills.add(updateTime);
-//        strategy.setTableFillList(tableFills);
+        strategy.setTableFillList(tableFills);
 
 //        乐观锁
 //        strategy.setVersionFieldName("version");
